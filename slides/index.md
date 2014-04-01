@@ -1,3 +1,3 @@
 
-# AngularJS in 30 Minutes
+## AngularJS in 40 Minutes
 
