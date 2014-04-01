@@ -19,7 +19,7 @@
                         if (xhr.readyState === 4) {
                             if (xhr.status >= 200 && xhr.status < 300) {
                                 section.innerHTML = xhr.responseText;
-                                angular.bootstrap(document, ['roundtable']);
+                                angular.bootstrap(section, ['app']);
                             } else {
                                 section.outerHTML = '<section data-state="alert">ERROR: The attempt to fetch ' + url + ' failed with the HTTP status ' + xhr.status + '. Check your browser\'s JavaScript console for more details.</p></section>';
                             }
