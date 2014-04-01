@@ -61,3 +61,10 @@ $selectionBackgroundColor: $magenta;
 
 // See ../../bower_components/reveal.js/css/theme/README.md
 // for further explanations on how reveal.js themes work.
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+    text-transform:none;
+}

@@ -140,3 +140,9 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #268bd2; }
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  text-transform: none; }
