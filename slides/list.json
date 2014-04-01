@@ -1,8 +1,12 @@
 [
     "index.html",
+    "what-is-angular.html",
+    "js-learning-curve.html",
+    "angular-enjoyment-curve.html",
     "table-of-content.html",
-    "hello-angular.html",
-    "hello-angular-source.md",
-    "demo-contacts.html",
-    "what-is-angular.html"
+    "demo-hello.html",
+    "demo-hello-source.md",
+    "demo-contact-book.html",
+    "demo-contact-book-html.md",
+    "demo-contact-book-js.md"
 ]

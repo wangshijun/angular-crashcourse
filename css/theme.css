@@ -145,7 +145,7 @@ body {
 .reveal h3,
 .reveal h4 {
   text-transform: none;
-  margin: 1em 0 .5em 0; }
+  margin: .5em 0; }
 
 .reveal .input-large {
   height: 60px;
