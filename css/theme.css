@@ -145,3 +145,7 @@ body {
 .reveal h3,
 .reveal h4 {
   text-transform: none; }
+
+.demo * {
+  text-align: left;
+  font-size: .9em; }

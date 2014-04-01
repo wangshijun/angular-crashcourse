@@ -2,5 +2,6 @@
     "index.md",
     "table-of-content.html",
     "hello-angular.html",
-    "hello-angular-source.md"
+    "hello-angular-source.md",
+    "demo-contacts.html"
 ]
