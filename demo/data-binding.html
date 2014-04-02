@@ -5,12 +5,13 @@
     <title>Data Binding</title>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
     <script src="../bower_components/angular/angular.js"></script>
+    <style> .alert-info { margin-top:20px; } </style>
 </head>
 <body ng-app>
     <div class="container" ng-init="name='Xuan Xuan'">
         <h3 class="page-header">Demo: Data Binding</h3>
         <input class="form-control input-lg" type="text" ng-model="name" />
-        <p class="alert alert-info" style="margin-top:20px">Hello, {{name}}</p>
+        <p class="alert alert-info">Hello, {{name}}</p>
     </div>
 </body>
 </html>
