@@ -12,4 +12,5 @@
 </ul>
 ```
 
-Data Binding, Views are projection of model states
+projection of model states on page
+
