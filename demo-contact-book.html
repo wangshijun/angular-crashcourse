@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Contact Book</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <script src="bower_components/angular/angular.js"></script>
+</head>
+<body ng-app="ContactBook">
+    <div class="container">
+        <h3 class="page-header">Demo: Views Controllers Scopes</h3>
+        <div ng-controller="ContactController" class="demo demo-contact-book">
+
+            <form class="form-inline" ng-submit="addContact()">
+                <div class="form-group">
+                    <input class="form-control" ng-model="name" placeholder="Contact Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" ng-model="mobile" placeholder="Contact Mobile">
+                </div>
+                <button type="submit" class="btn btn-success">Add Contact</button>
+            </form>
+
+            <br/>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Actions</th>
+                </tr>
+                <tr ng-repeat="contact in contacts">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.mobile}}</td>
+                    <td><a href="javascript:void(0)" ng-click="deleteContact()">删除</a></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        var app = angular.module('ContactBook', []);
+
+        app.controller('ContactController', function ($scope) {
+            $scope.contacts = [
+                { name: '仕军', mobile: 15811057083 },
+                { name: '敬威', mobile: 13888888888 },
+            ];
+
+            $scope.addContact = function () {
+
+                var hasDuplicate = false;
+                $scope.contacts.forEach(function (contact) {
+                    if (contact.name === $scope.name) {
+                        hasDuplicate = true;
+                    }
+                });
+
+                if (hasDuplicate) {
+                    alert('Duplicate contact name');
+                } else {
+                    $scope.contacts.push({
+                        name: $scope.name,
+                        mobile: $scope.mobile,
+                    });
+                }
+            };
+
+            $scope.deleteContact = function () {
+                $scope.contacts.splice(this.$index, 1);
+            };
+
+        });
+    </script>
+</body>
+</html>
