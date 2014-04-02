@@ -5,46 +5,34 @@
     <title>Angular Contact Book</title>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
 </head>
 <body ng-app="ContactBook">
     <div class="container">
         <h3 class="page-header">Demo: Routes</h3>
-        <div ng-controller="ContactController">
-
-            <form class="form-inline" ng-submit="addContact()">
-                <div class="form-group">
-                    <input class="form-control" ng-model="name" placeholder="Contact Name">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" ng-model="mobile" placeholder="Contact Mobile">
-                </div>
-                <button type="submit" class="btn btn-success">Add Contact</button>
-            </form>
-
-            <br/>
-
-            <table class="table table-bordered">
-                <tr>
-                    <th>Name</th>
-                    <th>Mobile</th>
-                    <th>Actions</th>
-                </tr>
-                <tr ng-repeat="contact in contacts">
-                    <td>{{contact.name}}</td>
-                    <td>{{contact.mobile}}</td>
-                    <td><a href="javascript:void(0)" ng-click="deleteContact()">删除</a></td>
-                </tr>
-            </table>
-
-        </div>
-
+        <div ng-view=""></div>
     </div>
 
     <script type="text/javascript">
-        var app = angular.module('ContactBook', []);
+        var app = angular.module('ContactBook', ['ngRoute']);
 
-        app.controller('ContactController', function ($scope) {
-            $scope.contacts = [
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'list.html',
+                    controller: 'ListController'
+                })
+                .when('/add', {
+                    templateUrl: 'add.html',
+                    controller: 'AddController'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+        });
+
+        app.service('ContactData', function () {
+            var contacts = [
                 { name: 'Wang Shijun', mobile: 18888888888 },
                 { name: 'Liu Jingwei', mobile: 13888888888 },
                 { name: 'Li Zhiye', mobile: 13999999999 },
@@ -54,30 +42,106 @@
                 { name: 'Zou Bin', mobile: 13999999999 },
             ];
 
-            $scope.addContact = function () {
+            function get() {
+                return contacts;
+            }
 
+            function add(data) {
                 var hasDuplicate = false;
-                $scope.contacts.forEach(function (contact) {
-                    if (contact.name === $scope.name) {
+
+                contacts.forEach(function (contact) {
+                    if (contact.name === data.name) {
                         hasDuplicate = true;
                     }
                 });
 
-                if (hasDuplicate) {
-                    alert('Duplicate contact name');
-                } else {
-                    $scope.contacts.push({
-                        name: $scope.name,
-                        mobile: $scope.mobile,
+                if (hasDuplicate === false) {
+                    contacts.push({
+                        name: data.name,
+                        mobile: data.mobile,
                     });
                 }
+
+                return !hasDuplicate;
+            }
+
+            function del(index) {
+            }
+
+            return {
+                get: get,
+                add: add,
+                del: del
             };
+        });
+
+        app.controller('ListController', function ($scope, $location, ContactData) {
+            $scope.contacts = ContactData.get();
 
             $scope.deleteContact = function () {
                 $scope.contacts.splice(this.$index, 1);
             };
 
+            $scope.changeRoute = function (path) {
+                $location.path(path);
+            };
         });
+
+        app.controller('AddController', function ($scope, $location, ContactData) {
+            $scope.addContact = function () {
+                if (ContactData.add({name: $scope.name, mobile: $scope.mobile})) {
+                    alert('Contact saved');
+                    $location.path('/');
+                } else {
+                    alert('Duplicate contact name');
+                }
+            };
+
+            $scope.changeRoute = function (path) {
+                $location.path(path);
+            };
+        });
+    </script>
+
+    <script type="text/ng-template" id="list.html">
+        <form class="form-inline">
+            <div class="form-group">
+                <input class="form-control" ng-model="keyword" placeholder="type to filter...">
+            </div>
+            <a href="javascript:void(0)" ng-click="changeRoute('add')" class="btn btn-success">Add Contact</a>
+        </form>
+
+        <br/>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="contact in contacts | filter:keyword">
+                <td>{{contact.name}}</td>
+                <td>{{contact.mobile}}</td>
+                <td>
+                    <a href="javascript:void(0)" ng-click="deleteContact()">删除</a>
+                </td>
+            </tr>
+        </table>
+    </script>
+
+    <script type="text/ng-template" id="add.html">
+        <form ng-submit="addContact()">
+            <div class="form-group">
+                <label for="">Contact Name</label>
+                <input class="form-control" ng-model="name">
+            </div>
+            <div class="form-group">
+                <label for="">Contact Mobile</label>
+                <input class="form-control" ng-model="mobile">
+            </div>
+            <button type="submit" class="btn btn-success">Add Contact</button>
+            <button class="btn btn-primary" ng-click="changeRoute('/')">Cancel</button>
+        </form>
     </script>
 
 </body>
