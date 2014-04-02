@@ -8,31 +8,16 @@
 </head>
 <body ng-app="ContactBook">
     <div class="container">
-        <h3 class="page-header">Demo: Views Controllers Scopes</h3>
-        <div ng-controller="ContactController" class="demo demo-contact-book">
-
-            <form class="form-inline" ng-submit="addContact()">
-                <div class="form-group">
-                    <input class="form-control" ng-model="name" placeholder="Contact Name">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" ng-model="mobile" placeholder="Contact Mobile">
-                </div>
-                <button type="submit" class="btn btn-success">Add Contact</button>
-            </form>
-
-            <br/>
-
-            <list contacts="contacts" remove="deleteContact()"></list>
-
+        <h3 class="page-header">Demo: Directives</h3>
+        <div ng-controller="ContactController">
+            <ng-contact-list contacts="contacts" remove="deleteContact()"></ng-contact-list>
         </div>
-
     </div>
 
     <script type="text/javascript">
         var app = angular.module('ContactBook', []);
 
-        app.directive('list', function () {
+        app.directive('ngContactList', function () {
             return {
                 templateUrl: 'contact-list.html',
                 replace: true,
@@ -48,8 +33,13 @@
 
         app.controller('ContactController', function ($scope) {
             $scope.contacts = [
-                { name: '仕军', mobile: 15811057083 },
-                { name: '敬威', mobile: 13888888888 },
+                { name: 'Wang Shijun', mobile: 18888888888 },
+                { name: 'Liu Jingwei', mobile: 13888888888 },
+                { name: 'Li Zhiye', mobile: 13999999999 },
+                { name: 'Shang Chun', mobile: 13999999999 },
+                { name: 'Liu Zhe', mobile: 13999999999 },
+                { name: 'Song Jiang', mobile: 13999999999 },
+                { name: 'Zou Bin', mobile: 13999999999 },
             ];
 
             $scope.addContact = function () {

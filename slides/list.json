@@ -12,6 +12,6 @@
     "angular-controllers.html",
     "angular-scopes-2.html",
     "angular-scopes.html",
-    "demo-contact-book.html",
-    "angular-directives.html"
+    "angular-directives.html",
+    "angular-filters.html"
 ]

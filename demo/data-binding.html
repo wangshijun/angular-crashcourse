@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Angular</title>
+    <title>Data Binding</title>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
     <script src="../bower_components/angular/angular.js"></script>
 </head>
 <body ng-app>
-    <div class="container">
+    <div class="container" ng-init="name='Xuan Xuan'">
         <h3 class="page-header">Demo: Data Binding</h3>
-        <input class="form-control" type="text" ng-model="name" />
-        <p class="alert alert-info">Hello, {{name}}</p>
+        <input class="form-control input-lg" type="text" ng-model="name" />
+        <p class="alert alert-info" style="margin-top:20px">Hello, {{name}}</p>
     </div>
 </body>
 </html>
