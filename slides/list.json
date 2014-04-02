@@ -13,5 +13,6 @@
     "angular-scopes-2.html",
     "angular-scopes.html",
     "angular-directives.html",
-    "angular-filters.html"
+    "angular-filters.html",
+    "angular-routes.html"
 ]
