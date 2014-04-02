@@ -9,10 +9,10 @@
     "data-binding.html",
     "data-binding-source.md",
     "angular-views.md",
+    "angular-controllers.html",
     "angular-scopes.html",
     "angular-scopes-2.html",
     "demo-contact-book.html",
     "demo-contact-book-html.md",
-    "demo-contact-book-js.md",
-    "angular-controllers.html"
+    "demo-contact-book-js.md"
 ]
